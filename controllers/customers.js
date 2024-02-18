@@ -41,7 +41,7 @@ const createCustomer = async (req, res) => {
 const  updateCustomer = async (req, res) => {
     //#swagger.tags=['Customers']
     const customerId = new ObjectId(req.params.id);
-    const user = {
+    const customer = {
         username: req.body.username,
         phone: req.body.phone,
         email: req.body.email,
@@ -49,7 +49,7 @@ const  updateCustomer = async (req, res) => {
         favcolor: req.body.favcolor,
         state: req.body.state
     };
-    const response = await mongodb.getDatabase().db().collection('customers').replaceOne({ _id: customerID }, customer);
+    const response = await mongodb.getDatabase().db().collection('customers').replaceOne({ _id: customerId }, customer);
     if (response.modifiedCount > 0) {
         res.status(204).send();
     } else {
